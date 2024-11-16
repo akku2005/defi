@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-
+import HeaderIcon from "../assets/images/footerImage.png";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -23,7 +23,7 @@ const Header = () => {
           blur-[80px] 
           opacity-50 
           animate-pulse
-          transform translate-x-0 translate-y-20 sm:translate-y-60"
+          transform translate-x-0 translate-y-20 sm:translate-y-[160px]"
       ></div>
 
       <div
@@ -41,8 +41,8 @@ const Header = () => {
       <div className="flex items-center z-10">
         <img
           alt="VaultChain Logo"
-          className="h-8 sm:h-10"
-          src="https://storage.googleapis.com/a1aa/image/jTF4COG9oo6PMZxePKlI4XKynItiNQIx9ZKSg1bX7pfqBcxTA.jpg"
+          className="h-10 sm:h-10 rounded-full"
+          src={HeaderIcon}
         />
         <span className="ml-2 text-lg sm:text-xl font-bold">VaultChain</span>
       </div>
@@ -62,13 +62,13 @@ const Header = () => {
       {/* Navigation Menu */}
       <nav
         className={`
-           inset-0 bg-opacity-90 z-40 
-          md:static md:bg-transparent
-          flex flex-col md:flex-row 
-          items-center justify-center md:justify-start
-          space-y-6 md:space-y-0 md:space-x-4 lg:space-x-8
-          ${isMenuOpen ? "block" : "hidden md:flex"}
-        `}
+        fixed inset-0 bg-black bg-opacity-90 z-40
+        md:static md:bg-transparent
+        flex flex-col md:flex-row
+        items-center justify-center md:justify-start
+        space-y-6 md:space-y-0 md:space-x-4 lg:space-x-8
+        ${isMenuOpen ? "block" : "hidden md:flex"}
+      `}
       >
         <Link
           className="text-white hover:text-green-500 text-xl md:text-base"

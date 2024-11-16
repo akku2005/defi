@@ -31,7 +31,7 @@
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: opacity 0.3s ease;
+  transition: opacity 5s ease;
 }
 
 /* Company name styling */

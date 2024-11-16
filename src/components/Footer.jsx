@@ -1,6 +1,7 @@
 // src/components/Footer.jsx
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../styles/footer.css";
 import {
   faTelegram,
   faXing,
@@ -8,6 +9,7 @@ import {
   faLinkedin,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
+import FooterImage from "../assets/images/footerImage.png";
 
 const socialLinks = [
   { icon: faTelegram, label: "Telegram" },
@@ -23,25 +25,22 @@ const productLinks = [
   "Staking & Farming",
   "Token Minter",
 ];
-
 const companyLinks = [
   "Meet the Team",
   "Documentation",
   "Our Tokens",
   "Network",
 ];
-
 const termsLinks = ["Sitemap", "Privacy Policy", "Audits", "Brand Assets"];
 
 const Footer = () => {
   return (
     <footer
       style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1516737490857-847e4fbcf7a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1920')",
+        backgroundImage: `url(${FooterImage})`, // Corrected: add `url()` around the image source
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundColor: "rgba(0,0,0,0.7)",
+        backgroundColor: "rgba(0,0,0,0.9)",
         backgroundBlendMode: "overlay",
       }}
       className="text-white py-8 bg-opacity-70 overflow-hidden"
@@ -49,7 +48,6 @@ const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Brand Section */}
-
           <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <div className="flex flex-col items-center sm:items-start">
               <div className="flex items-center mb-4">
@@ -57,7 +55,7 @@ const Footer = () => {
                   alt="VaultChain Logo"
                   className="mr-4 rounded-full"
                   height="70"
-                  src="https://storage.googleapis.com/a1aa/image/ZgfOwXJiCPSNAaNRSuFB9I3zqnqKu2TnghEOEsNyiaSrfdxTA.jpg"
+                  src={FooterImage}
                   width="70"
                 />
                 <span className="text-2xl sm:text-3xl font-bold text-green-400">
@@ -72,7 +70,7 @@ const Footer = () => {
                   <a
                     key={index}
                     className="text-green-400 hover:text-green-600 transition-colors duration-300"
-                    href="javascript:void(0);"
+                    href="#"
                     aria-label={`Follow us on ${label}`}
                   >
                     <FontAwesomeIcon icon={icon} size="2x" />
@@ -91,7 +89,7 @@ const Footer = () => {
               {productLinks.map((product, index) => (
                 <li key={index}>
                   <a
-                    href="javascript:void(0);"
+                    href="#"
                     className="hover:text-green-400 transition-colors"
                   >
                     {product}
@@ -110,7 +108,7 @@ const Footer = () => {
               {companyLinks.map((item, index) => (
                 <li key={index}>
                   <a
-                    href="javascript:void(0);"
+                    href="#"
                     className="hover:text-green-400 transition-colors"
                   >
                     {item}
@@ -129,7 +127,7 @@ const Footer = () => {
               {termsLinks.map((item, index) => (
                 <li key={index}>
                   <a
-                    href="javascript:void(0);"
+                    href="#"
                     className="hover:text-green-400 transition-colors"
                   >
                     {item}
