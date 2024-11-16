@@ -1,0 +1,29 @@
+/* src/assets/styles/tailwind.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+  }
+
+  /* Optional: Additional global styles */
+  * {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+/* Custom scrollbar (optional) */
+::-webkit-scrollbar {
+  @apply w-2 bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-green-500 rounded-full;
+}
+
+/* Optional: Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
