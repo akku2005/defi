@@ -141,7 +141,7 @@ const Footer = () => {
         </div>
 
         <div className="text-center mt-8 text-green-400 pt-4">
-          VaultChain © 2021-2024. All rights reserved.
+          VaultChain © 2024. All rights reserved.
         </div>
       </div>
     </footer>

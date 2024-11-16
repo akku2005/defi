@@ -1,31 +1,69 @@
-/* slider.css */
+/* Container for the marquee */
 .marquee {
+  position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
+  width: 100%; /* Make sure it takes full width */
 }
 
+/* Create a scrollable container that will keep moving */
 .marquee-content {
   display: flex;
-  gap: 50px; /* Adjust gap as needed for spacing */
-  animation: marquee 20s linear infinite; /* Adjust duration for scroll speed */
+  align-items: center;
+  gap: 8rem; /* Adjust the gap between the items */
+  animation: marquee 20s linear infinite;
+  will-change: transform;
+  flex-wrap: nowrap; /* Ensure items stay in a single row */
 }
 
+/* Keyframe for the infinite scrolling */
 @keyframes marquee {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(
-      -100%
-    ); /* Move to the left by the full width of the container */
+    transform: translateX(-100%); /* Move content fully to the left */
   }
 }
 
+/* Styling each company item */
 .company-item {
-  white-space: nowrap; /* Prevent line breaks */
-  font-size: 1.5rem; /* Adjust font size as needed */
-  color: white; /* Text color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Company name styling */
+.company-name {
+  color: white;
+  font-size: 1.25rem; /* Adjust based on needs */
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+/* Logo styling */
+.company-logo {
+  height: 2rem; /* Adjust based on needs */
+  width: auto;
+}
+
+/* Blurring the ends of the marquee */
+.marquee::before,
+.marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0, 0, 1, 0.5), rgba(0, 0, 0, 1));
+  z-index: 1;
+}
+
+.marquee::before {
+  left: 0;
+}
+
+.marquee::after {
+  right: 0;
 }

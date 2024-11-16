@@ -1,10 +1,12 @@
-import "../styles/slider.css";
 import React from "react";
+import Services from "./Services";
+import SliderCompanyname from "../components/SliderCompanyname";
 
 const Home = () => {
   return (
-    <div className="text-white min-h-screen flex items-center justify-center relative overflow-hidden">
+    <div className="text-white min-h-screen flex flex-col justify-between relative overflow-hidden lr:mt-44 md:mt-44 sm:mt-10">
       {/* Green Gradient Circle in Corner */}
+      <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full "></div>
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -51,6 +53,10 @@ const Home = () => {
           </div>
         </div>
       </main>
+
+      {/* Services Section */}
+      <Services />
+      <SliderCompanyname />
     </div>
   );
 };

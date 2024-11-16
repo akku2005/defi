@@ -62,7 +62,7 @@ const Header = () => {
       {/* Navigation Menu */}
       <nav
         className={`
-          fixed inset-0 bg-black bg-opacity-90 z-40 
+           inset-0 bg-opacity-90 z-40 
           md:static md:bg-transparent
           flex flex-col md:flex-row 
           items-center justify-center md:justify-start
