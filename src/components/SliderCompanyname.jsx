@@ -8,7 +8,7 @@ import ArbitrumLogo from "../assets/icons/idc6aNh4sG_1731755560413.jpeg"; // You
 
 const SliderCompanyname = () => {
   return (
-    <section className="w-full mx-4 md:mx-10 mt-48 mb-10 overflow-hidden">
+    <section className="w-full mx-4 md:mx-10  mb-10 overflow-hidden lg:mt-48 md:mt-44">
       <div className="marquee">
         <div className="marquee-content">
           <div className="company-item">
