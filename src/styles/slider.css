@@ -3,13 +3,14 @@
   position: relative;
   overflow: hidden;
   width: 100%; /* Make sure it takes full width */
+  padding: 1rem 0;
 }
 
 /* Create a scrollable container that will keep moving */
 .marquee-content {
   display: flex;
   align-items: center;
-  gap: 8rem; /* Adjust the gap between the items */
+  gap: 6rem; /* Slightly reduced gap */
   animation: marquee 20s linear infinite;
   will-change: transform;
   flex-wrap: nowrap; /* Ensure items stay in a single row */
@@ -21,7 +22,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%); /* Move content fully to the left */
+    transform: translateX(-50%); /* Adjusted for smoother loop */
   }
 }
 
@@ -30,40 +31,108 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+}
+
+.company-item:hover {
   opacity: 1;
-  transition: opacity 5s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: scale(1.05);
 }
 
 /* Company name styling */
 .company-name {
   color: white;
-  font-size: 1.25rem; /* Adjust based on needs */
-  font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: 600;
   margin-left: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Logo styling */
 .company-logo {
-  height: 2rem; /* Adjust based on needs */
+  height: 2.5rem; /* Slightly larger */
   width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-/* Blurring the ends of the marquee */
+.company-item:hover .company-logo {
+  transform: scale(1.1) rotate(3deg);
+}
+
+/* Advanced blurring effect for both sides */
+.marquee {
+  position: relative;
+}
+
 .marquee::before,
 .marquee::after {
   content: '';
   position: absolute;
   top: 0;
-  width: 20%;
-  height: 100%;
-  background: linear-gradient(to left, rgba(0, 0, 1, 0.5), rgba(0, 0, 0, 1));
-  z-index: 1;
+  bottom: 0;
+  width: 15%; /* Adjusted width */
+  z-index: 10;
+  pointer-events: none;
 }
 
 .marquee::before {
-  left: 0;
+  left: -2px;
+  background: linear-gradient(
+    to right, 
+    rgba(0, 0, 0, 1) 0%, 
+    rgba(0, 0, 0, 0.9) 30%, 
+    rgba(0, 0, 0, 0.5) 60%, 
+    rgba(0, 0, 0, 0) 100%
+  );
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .marquee::after {
-  right: 0;
+  right: -2px;
+  background: linear-gradient(
+    to left, 
+    rgba(0, 0, 0, 1) 0%, 
+    rgba(0, 0, 0, 0.9) 30%, 
+    rgba(0, 0, 0, 0.5) 60%, 
+    rgba(0, 0, 0, 0) 100%
+  );
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .marquee-content {
+    gap: 3rem; /* Reduced gap for smaller screens */
+  }
+
+  .company-logo {
+    height: 2rem; /* Smaller on mobile */
+  }
+
+  .company-name {
+    font-size: 0.9rem; /* Smaller font on mobile */
+  }
+
+  .marquee::before,
+  .marquee::after {
+    width: 10%; /* Slightly narrower on mobile */
+  }
+}
+
+/* Optional: Subtle animation for continuous movement */
+@keyframes subtle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }

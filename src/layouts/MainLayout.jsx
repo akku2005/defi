@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="mx-10">
+    <div>
       <Header />
       <main>{children}</main>
       <Footer />

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import HeaderIcon from "../assets/images/footerImage.png";
-im;
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   return (
-    <header className="relative flex justify-between items-center p-4 sm:p-6 bg-black text-white">
+    <header className="relative flex justify-between items-center p-4 sm:p-6 text-white">
       {/* Gradient Circle Effect */}
       <div
         className="absolute top-0 left-0 

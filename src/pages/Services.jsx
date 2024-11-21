@@ -34,11 +34,9 @@ const ServiceCard = ({ icon, title, description, delay }) => {
       ></div>
 
       <div className="p-4 relative z-10">
-        {" "}
-        {/* Even less padding */}
         <div
           className="mb-3 flex items-center justify-center 
-        w-14 h-14 rounded-full bg-green-500/20 mx-auto" // Smaller icon container
+        w-14 h-14 rounded-full bg-green-500/20 mx-auto"
         >
           <FontAwesomeIcon
             icon={icon}
@@ -130,7 +128,7 @@ const Services = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="relative  py-8 px-4"
+      className="relative py-8 px-4 mb-10"
     >
       {/* Background Gradient */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -176,22 +174,37 @@ const Services = () => {
       </motion.div>
 
       <div className="flex flex-col items-center">
-        {/* Top Row with Two Cards */}
-        <div className="flex justify-center gap-6 mb-6">
-          {services.slice(0, 2).map((service, index) => (
-            <ServiceCard
-              key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              delay={service.delay}
-            />
-          ))}
+        {/* Responsive layout for different screen sizes */}
+        <div className="hidden md:flex flex-col items-center">
+          {/* Large Screens: Original Layout */}
+          <div className="flex justify-center gap-6 mb-6">
+            {services.slice(0, 2).map((service, index) => (
+              <ServiceCard
+                key={index}
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+                delay={service.delay}
+              />
+            ))}
+          </div>
+
+          <div className="flex justify-center gap-6">
+            {services.slice(2).map((service, index) => (
+              <ServiceCard
+                key={index}
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+                delay={service.delay}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Bottom Row with Three Cards */}
-        <div className="flex justify-center gap-6">
-          {services.slice(2).map((service, index) => (
+        {/* Mobile Screens: Vertical Layout */}
+        <div className="md:hidden flex flex-col space-y-6 w-full max-w-[250px]">
+          {services.map((service, index) => (
             <ServiceCard
               key={index}
               icon={service.icon}
