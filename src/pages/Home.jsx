@@ -1,6 +1,7 @@
 import React from "react";
 import Services from "./Services";
 import SliderCompanyname from "../components/SliderCompanyname";
+import Portfolio from "./Portfolio";
 
 const Home = () => {
   return (
@@ -56,6 +57,7 @@ const Home = () => {
       {/* Services Section */}
       <SliderCompanyname />
       <Services />
+      <Portfolio />
     </div>
   );
 };
