@@ -7,7 +7,7 @@ const AnimatedCounter = ({ end, suffix = "", prefix = "" }) => {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
-    const duration = 2000;
+    const duration = 4000;
     const start = 0;
 
     let startTimestamp = null;
@@ -93,7 +93,7 @@ const Portfolio = () => {
       {/* Glow Effects */}
       <div className="absolute top-40 right-40 w-[800px] h-[200px] bg-green-600/20 rounded-full blur-[120px] z-0"></div>
       <div className="absolute bottom-0 left-0 w-[800px] h-[300px] bg-green-600/10 rounded-full blur-[100px] z-0"></div>
-      <div className="absolute bottom-40 left-44 w-[200px] h-[300px] bg-gradient-to-b from-green-600 via-green-500 to-green-400 rounded-full blur-[120px] z-0"></div>
+      <div className="absolute bottom-[100px] left-[420px]  w-[200px] h-[300px] bg-gradient-to-b from-green-600 via-green-500 to-green-400 rounded-full blur-[120px] z-0"></div>
       {/* Main Content */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}

@@ -1,0 +1,106 @@
+/* src/styles/Loader.css */
+.loader-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #1a1a1a; /* Dark background */
+}
+
+.text-container {
+  display: flex;
+}
+
+.loader-letter {
+  font-size: 5rem; /* Default size for larger screens */
+  color: #4ade80; /* Color of the letters */
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+  margin: 0 2px; /* Space between letters */
+  will-change: transform; /* Performance optimization */
+}
+
+/* Updated Keyframe animation for a more pronounced bouncing effect */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px); /* Higher bounce */
+  }
+  60% {
+    transform: translateY(-10px); /* Medium bounce */
+  }
+}
+
+/* Optional: Add hover effect */
+.loader-letter:hover {
+  animation: bounce 0.5s infinite; /* Use the bounce animation on hover */
+}
+
+/* Styles for the progress bar */
+.progress-container {
+  width: 40%; /* Default width for larger screens */
+  margin-top: 20px; /* Space between text and progress bar */
+  position: relative;
+  background-color: #e0e0e0; /* Light background for the progress bar */
+  border-radius: 10px; /* Rounded corners */
+  height: 30px; /* Height of the progress bar */
+}
+
+.progress-bar {
+  height: 100%; /* Full height of the container */
+  background: linear-gradient(
+    to right,
+    #a8e6cf,
+    #4ade80
+  ); /* Gradient from light green to dark green */
+  border-radius: 10px; /* Rounded corners */
+  transition: width 0.5s ease; /* Smooth transition for width change */
+}
+
+.progress-percentage {
+  position: absolute;
+  top: 0; /* Align to the top */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center the text */
+  font-weight: bold; /* Bold text */
+  color: #000; /* Text color */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  /* Tablet and below */
+  .loader-letter {
+    font-size: 4rem; /* Smaller font size for tablets */
+  }
+
+  .progress-container {
+    width: 70%; /* Wider progress bar on tablets */
+    height: 25px; /* Reduced height for mobile */
+  }
+
+  .progress-percentage {
+    font-size: 1rem; /* Smaller font size for percentage */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Mobile screens */
+  .loader-letter {
+    font-size: 3rem; /* Smaller font size for mobile */
+  }
+
+  .progress-container {
+    width: 90%; /* Full width progress bar on mobile */
+    height: 20px; /* Further reduced height for mobile */
+  }
+
+  .progress-percentage {
+    font-size: 0.9rem; /* Smaller font size for percentage */
+  }
+}
