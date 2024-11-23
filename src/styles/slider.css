@@ -37,11 +37,7 @@
   border-radius: 0.75rem;
 }
 
-.company-item:hover {
-  opacity: 1;
-  background-color: rgba(255, 255, 255, 0.05);
-  transform: scale(1.05);
-}
+
 
 /* Company name styling */
 .company-name {
@@ -61,9 +57,6 @@
   transition: transform 0.3s ease;
 }
 
-.company-item:hover .company-logo {
-  transform: scale(1.1) rotate(3deg);
-}
 
 /* Advanced blurring effect for both sides */
 .marquee {

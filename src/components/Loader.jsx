@@ -12,7 +12,7 @@ const Loader = ({ onLoadingComplete }) => {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev < 100) {
-          return prev + 10; // Increment progress
+          return prev + 20; // Increment progress
         } else {
           clearInterval(interval); // Clear interval when complete
           onLoadingComplete(); // Notify that loading is complete

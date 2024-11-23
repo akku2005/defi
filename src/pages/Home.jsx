@@ -1,17 +1,50 @@
-import React from "react";
+import React, { useRef } from "react";
 import Services from "./Services";
 import SliderCompanyname from "../components/SliderCompanyname";
 import Portfolio from "./Portfolio";
+import Team from "./Team";
 
 const Home = () => {
-  return (
-    <div className="text-white min-h-screen flex flex-col justify-between relative overflow-hidden lr:mt-44 md:mt-20 sm:mt-10 ">
-      {/* Green Gradient Circle in Corner */}
+  // Create refs for each section to enable smooth scrolling
+  const servicesRef = useRef(null);
+  const portfolioRef = useRef(null);
+  const teamRef = useRef(null);
 
+  // Smooth scroll function
+  const scrollToSection = (elementRef) => {
+    elementRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <div className="text-white min-h-screen flex flex-col relative overflow-hidden mt-14">
+      {/* Hero Section */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 mb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Left Content Section */}
           <div className="text-center md:text-left space-y-4">
+            <div
+              className="absolute top-0 left-0
+          w-[300px] h-[300px] 
+          sm:w-[400px] sm:h-[330px] 
+          bg-gradient-to-br 
+          from-green-600 via-green-500 to-green-400 
+          rounded-full 
+          blur-[80px] 
+          opacity-50 
+          animate-pulse
+          transform translate-x-0 translate-y-20 sm:translate-y-[130px]"
+            ></div>
+
+            <div
+              className="absolute top-0 left-0 
+          w-[200px] h-[200px] 
+          sm:w-[300px] sm:h-[300px] 
+          bg-gradient-to-br 
+          from-green-500/20 via-green-500/10 to-green-500/5 
+          rounded-full 
+          blur-[120px] 
+          opacity-30"
+            ></div>
             <h2 className="text-green-500 text-base sm:text-lg font-semibold">
               KEEP YOUR MONEY SAFE!
             </h2>
@@ -22,20 +55,20 @@ const Home = () => {
               Decentralized, scalable, trusted. Welcome to VaultChain.
             </p>
 
-            {/* Action Buttons */}
+            {/* Action Buttons with Section Navigation */}
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
-              <a
-                className="bg-green-500 text-black px-6 py-3 rounded-full hover:bg-green-600 transition-all duration-300 inline-block text-center"
-                href="#"
+              <button
+                onClick={() => scrollToSection(servicesRef)}
+                className="bg-green-500 text-black px-6 py-3 rounded-full hover:bg-green-600 transition-all duration-300"
               >
-                Go to App
-              </a>
-              <a
-                className="border border-green-500 text-green-500 px-6 py-3 rounded-full hover:bg-green-600 hover:text-black transition-all duration-300 inline-block text-center"
-                href="#"
+                Our Services
+              </button>
+              <button
+                onClick={() => scrollToSection(portfolioRef)}
+                className="border border-green-500 text-green-500 px-6 py-3 rounded-full hover:bg-green-600 hover:text-black transition-all duration-300"
               >
-                Documentation
-              </a>
+                Portfolio
+              </button>
             </div>
           </div>
 
@@ -54,10 +87,23 @@ const Home = () => {
         </div>
       </main>
 
-      {/* Services Section */}
+      {/* Company Name Slider */}
       <SliderCompanyname />
-      <Services />
-      <Portfolio />
+
+      {/* Services Section */}
+      <section ref={servicesRef} className="py-8">
+        <Services />
+      </section>
+
+      {/* Portfolio Section */}
+      <section ref={portfolioRef} className="py-8">
+        <Portfolio />
+      </section>
+
+      {/* Team Section */}
+      <section ref={teamRef} className="py-8">
+        <Team />
+      </section>
     </div>
   );
 };

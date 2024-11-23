@@ -58,7 +58,7 @@ const Portfolio = () => {
               initial={{
                 opacity: 0,
                 x: Math.random() * window.innerWidth,
-                y: -40, // Start from above the screen
+                y: 40, // Start from above the screen
                 scale: 0.5,
                 rotate: Math.random() * 360,
               }}

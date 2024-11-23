@@ -14,29 +14,6 @@ const Header = () => {
   return (
     <header className="relative flex justify-between items-center p-4 sm:p-6 text-white">
       {/* Gradient Circle Effect */}
-      <div
-        className="absolute top-0 left-0 
-          w-[300px] h-[300px] 
-          sm:w-[400px] sm:h-[430px] 
-          bg-gradient-to-br 
-          from-green-600 via-green-500 to-green-400 
-          rounded-full 
-          blur-[80px] 
-          opacity-50 
-          animate-pulse
-          transform translate-x-0 translate-y-20 sm:translate-y-[160px]"
-      ></div>
-
-      <div
-        className="absolute top-0 left-0 
-          w-[200px] h-[200px] 
-          sm:w-[300px] sm:h-[300px] 
-          bg-gradient-to-br 
-          from-green-500/20 via-green-500/10 to-green-500/5 
-          rounded-full 
-          blur-[120px] 
-          opacity-30"
-      ></div>
 
       {/* Logo Section */}
       <div className="flex items-center z-10">
@@ -45,7 +22,9 @@ const Header = () => {
           className="h-10 sm:h-10 rounded-full"
           src={HeaderIcon}
         />
-        <span className="ml-2 text-lg sm:text-xl font-bold">VaultChain</span>
+        <Link to="/">
+          <span className="ml-2 text-lg sm:text-xl font-bold">VaultChain</span>
+        </Link>
       </div>
 
       {/* Mobile Menu Toggle */}
