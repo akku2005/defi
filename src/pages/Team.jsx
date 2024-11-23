@@ -17,6 +17,20 @@ const teamMembers = [
     },
     skills: ["DeFi", "Blockchain", "AI", "Leadership"],
   },
+  {
+    id: 2,
+    name: "Skywalker",
+    role: "FOUNDER",
+    character: "A",
+    bio: "Founder of VaultChain, revolutionizing Decentralized Finance with cutting-edge multi-chain technology and AI-driven investment strategies.",
+    avatar: FaceImage,
+    socialLinks: {
+      linkedin: "http://www.linkedin.com/in/akashkumar-sahu-5b7897238",
+      twitter: "https://x.com/AkashSa07314397",
+      github: "https://github.com/akku2005",
+    },
+    skills: ["DeFi", "Blockchain", "AI", "Leadership"],
+  },
 ];
 
 const InteractiveBubbleBackground = ({ mousePosition }) => {

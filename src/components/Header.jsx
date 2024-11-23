@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import HeaderIcon from "../assets/images/footerImage.png";
@@ -13,8 +13,6 @@ const Header = () => {
 
   return (
     <header className="relative flex justify-between items-center p-4 sm:p-6 text-white">
-      {/* Gradient Circle Effect */}
-
       {/* Logo Section */}
       <div className="flex items-center z-10">
         <img
@@ -22,9 +20,9 @@ const Header = () => {
           className="h-10 sm:h-10 rounded-full"
           src={HeaderIcon}
         />
-        <Link to="/">
-          <span className="ml-2 text-lg sm:text-xl font-bold">VaultChain</span>
-        </Link>
+        <NavLink to="/" className="ml-2 text-lg sm:text-xl font-bold">
+          VaultChain
+        </NavLink>
       </div>
 
       {/* Mobile Menu Toggle */}
@@ -50,52 +48,77 @@ const Header = () => {
         ${isMenuOpen ? "block" : "hidden md:flex"}
       `}
       >
-        <Link
-          className="text-white hover:text-green-500 text-xl md:text-base"
+        {/* Individual Links */}
+        <NavLink
           to="/product"
           onClick={toggleMenu}
+          className={({ isActive }) =>
+            `text-xl md:text-base ${
+              isActive
+                ? "text-green-500 font-bold"
+                : "text-white hover:text-green-500"
+            }`
+          }
         >
           Product
-        </Link>
-        <Link
-          className="text-white hover:text-green-500 text-xl md:text-base"
+        </NavLink>
+        <NavLink
           to="/team"
           onClick={toggleMenu}
+          className={({ isActive }) =>
+            `text-xl md:text-base ${
+              isActive
+                ? "text-green-500 font-bold"
+                : "text-white hover:text-green-500"
+            }`
+          }
         >
           Meet the Team
-        </Link>
-        <Link
-          className="text-white hover:text-green-500 text-xl md:text-base"
+        </NavLink>
+        <NavLink
           to="/network"
           onClick={toggleMenu}
+          className={({ isActive }) =>
+            `text-xl md:text-base ${
+              isActive
+                ? "text-green-500 font-bold"
+                : "text-white hover:text-green-500"
+            }`
+          }
         >
           Network
-        </Link>
-        <Link
-          className="text-white hover:text-green-500 text-xl md:text-base"
+        </NavLink>
+        <NavLink
           to="/blog"
           onClick={toggleMenu}
+          className={({ isActive }) =>
+            `text-xl md:text-base ${
+              isActive
+                ? "text-green-500 font-bold"
+                : "text-white hover:text-green-500"
+            }`
+          }
         >
           Blog
-        </Link>
+        </NavLink>
 
         {/* Mobile CTA Button */}
-        <Link
+        <NavLink
           className="md:hidden bg-green-500 text-black px-6 py-3 rounded-full hover:bg-green-600 text-xl"
           to="/app"
           onClick={toggleMenu}
         >
           Go to App
-        </Link>
+        </NavLink>
       </nav>
 
       {/* Desktop CTA Button */}
-      <Link
+      <NavLink
         className="hidden md:block bg-green-500 text-black px-4 py-2 rounded-full hover:bg-green-600"
         to="/app"
       >
         Go to App
-      </Link>
+      </NavLink>
     </header>
   );
 };
