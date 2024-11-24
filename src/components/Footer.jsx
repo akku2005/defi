@@ -9,7 +9,8 @@ import {
   faLinkedin,
   faGithub,
 } from "@fortawesome/free-brands-svg-icons";
-import FooterImage from "../assets/images/footerImage.png";
+import FooterImage from "../assets/images/vaultChainImage.png";
+import FooterImage2 from "../assets/images/footerImage.png";
 
 const socialLinks = [
   { icon: faTelegram, label: "Telegram" },
@@ -37,7 +38,7 @@ const Footer = () => {
   return (
     <footer
       style={{
-        backgroundImage: `url(${FooterImage})`, // Corrected: add `url()` around the image source
+        backgroundImage: `url(${FooterImage2})`, // Corrected: add `url()` around the image source
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundColor: "rgba(0,0,0,0.9)",

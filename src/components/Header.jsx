@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import HeaderIcon from "../assets/images/footerImage.png";
+import HeaderIcon from "../assets/images/vaultChainImage.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,7 +17,7 @@ const Header = () => {
       <div className="flex items-center z-10">
         <img
           alt="VaultChain Logo"
-          className="h-10 sm:h-10 rounded-full"
+          className="h-14 sm:h-18 rounded-full"
           src={HeaderIcon}
         />
         <NavLink to="/" className="ml-2 text-lg sm:text-xl font-bold">

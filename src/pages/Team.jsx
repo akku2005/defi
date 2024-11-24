@@ -130,7 +130,7 @@ const Team = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden relative">
+    <div className=" bg-black text-white overflow-hidden relative">
       {/* Interactive Background */}
       <InteractiveBubbleBackground mousePosition={mousePosition} />
 
