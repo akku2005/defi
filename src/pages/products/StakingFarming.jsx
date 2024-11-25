@@ -5,10 +5,7 @@ import {
   FaChartLine,
   FaLock,
   FaChartPie,
-  FaPercent,
-  FaFireAlt,
   FaCalculator,
-  FaWallet,
 } from "react-icons/fa";
 
 // Staking Pools Configuration
@@ -56,7 +53,6 @@ const STAKING_POOLS = [
     ],
   },
 ];
-
 const StakingFarming = () => {
   const [activeTab, setActiveTab] = useState("staking");
   const [stakingAmount, setStakingAmount] = useState("");
@@ -80,23 +76,23 @@ const StakingFarming = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white">
       {/* Header Section */}
-      <div className="container mx-auto px-4 pt-24 text-center">
+      <div className="container mx-auto px-4 pt-16 md:pt-24 text-center">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent"
+          className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent"
         >
           Staking & Farming
         </motion.h1>
-        <p className="text-xl max-w-2xl mx-auto text-gray-300 mb-12">
+        <p className="text-sm md:text-xl max-w-2xl mx-auto text-gray-300 mb-8 md:mb-12 px-4">
           Maximize your crypto earnings through advanced staking strategies and
           yield farming opportunities
         </p>
       </div>
 
       {/* Tabs Navigation */}
-      <div className="flex justify-center mb-12">
-        <div className="bg-gray-900 rounded-full p-2 flex space-x-4 shadow-2xl">
+      <div className="flex justify-center mb-8 md:mb-12 px-4">
+        <div className="bg-gray-900 rounded-full p-1 md:p-2 flex space-x-2 md:space-x-4 shadow-2xl overflow-x-auto">
           {[
             { name: "staking", icon: FaCoins },
             { name: "farming", icon: FaChartPie },
@@ -105,14 +101,14 @@ const StakingFarming = () => {
             <button
               key={tab.name}
               onClick={() => setActiveTab(tab.name)}
-              className={`px-6 py-2 rounded-full flex items-center space-x-2 transition-all duration-300 ${
+              className={`px-3 md:px-6 py-2 rounded-full flex items-center space-x-2 transition-all duration-300 text-xs md:text-base ${
                 activeTab === tab.name
                   ? "bg-gradient-to-r from-green-600 via-green-500 to-green-400 text-white"
                   : "text-gray-400 hover:bg-gray-800"
               }`}
             >
               <tab.icon />
-              <span>
+              <span className="hidden md:inline">
                 {tab.name.charAt(0).toUpperCase() + tab.name.slice(1)}
               </span>
             </button>
@@ -122,24 +118,24 @@ const StakingFarming = () => {
 
       {/* Staking Pools Section */}
       {activeTab === "staking" && (
-        <div className="container mx-auto px-4 grid md:grid-cols-3 gap-8">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
           {STAKING_POOLS.map((pool) => (
             <motion.div
               key={pool.id}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              className={`bg-gradient-to-br ${pool.gradient} p-6 rounded-2xl shadow-2xl transform transition-all hover:scale-105`}
+              className={`bg-gradient-to-br ${pool.gradient} p-4 md:p-6 rounded-2xl shadow-2xl transform transition-all hover:scale-105`}
             >
-              <div className="flex justify-between items-center mb-6">
-                <pool.icon className="text-6xl text-white opacity-80" />
-                <span className="text-2xl font-bold text-white">
+              <div className="flex justify-between items-center mb-4 md:mb-6">
+                <pool.icon className="text-4xl md:text-6xl text-white opacity-80" />
+                <span className="text-xl md:text-2xl font-bold text-white">
                   {pool.apy}% APY
                 </span>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">
+              <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-4 text-white">
                 {pool.name}
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-2 md:space-y-4">
                 {[
                   {
                     label: "Total Staked",
@@ -150,13 +146,13 @@ const StakingFarming = () => {
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className="flex justify-between border-b border-white/20 pb-2"
+                    className="flex justify-between border-b border-white/20 pb-1 md:pb-2 text-sm md:text-base"
                   >
                     <span className="text-white/70">{item.label}</span>
                     <span className="font-bold text-white">{item.value}</span>
                   </div>
                 ))}
-                <button className="w-full mt-4 bg-white text-black py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors">
+                <button className="w-full mt-2 md:mt-4 bg-white text-black py-2 md:py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors text-sm md:text-base">
                   Stake Now
                 </button>
               </div>
@@ -171,14 +167,14 @@ const StakingFarming = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-gray-900 rounded-2xl p-8 shadow-2xl border border-green-800/50"
+            className="bg-gray-900 rounded-2xl p-4 md:p-8 shadow-2xl border border-green-800/50"
           >
-            <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-8 bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent">
               Rewards Calculator
             </h2>
-            <form className="space-y-6">
+            <form className="space-y-4 md:space-y-6">
               <div>
-                <label className="text-green-400 mb-2  flex items  items-center">
+                <label className="text-green-400 mb-2 flex items-center text-sm md:text-base">
                   Staking Amount
                 </label>
                 <input
@@ -186,11 +182,13 @@ const StakingFarming = () => {
                   value={stakingAmount}
                   onChange={(e) => setStakingAmount(e.target.value)}
                   placeholder="Enter Amount to Stake"
-                  className="w-full p-4 bg-black border border-green-800 rounded-lg focus:outline-none focus:border-green-600"
+                  className="w-full p-2 md:p-4 bg-black border border-green-800 rounded-lg focus:outline-none focus:border-green-600 text-sm md:text-base"
                 />
               </div>
               <div>
-                <label className="text-green-400 mb-2 block">Select Pool</label>
+                <label className="text-green-400 mb-2 block text-sm md:text-base">
+                  Select Pool
+                </label>
                 <select
                   value={selectedPool.name}
                   onChange={(e) => {
@@ -199,7 +197,7 @@ const StakingFarming = () => {
                     );
                     setSelectedPool(pool);
                   }}
-                  className="w-full p-4 bg-black border border-green-800 rounded-lg focus:outline-none focus:border-green-600"
+                  className="w-full p-2 md:p-4 bg-black border border-green-800 rounded-lg focus:outline-none focus:border-green-600 text-sm md:text-base"
                 >
                   {STAKING_POOLS.map((pool) => (
                     <option key={pool.id} value={pool.name}>
@@ -211,13 +209,13 @@ const StakingFarming = () => {
               <button
                 type="button"
                 onClick={calculateRewards}
-                className="w-full bg-gradient-to-r from-green-600 via-green-500 to-green-400 py-3 rounded-lg hover:opacity-90 transition-opacity"
+                className="w-full bg-gradient-to-r from-green-600 via-green-500 to-green-400 py-2 md:py-3 rounded-lg hover:opacity-90 transition-opacity text-sm md:text-base"
               >
                 Calculate Rewards
               </button>
             </form>
             {estimatedRewards && (
-              <div className="mt-6 text-center">
+              <div className="mt-4 text-center">
                 <h3 className="text-xl font-bold text-white">
                   Estimated Rewards
                 </h3>
