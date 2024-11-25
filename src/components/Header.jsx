@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   return (
-    <header className="relative flex justify-between items-center p-4 sm:p-6 text-white">
+    <header className="relative flex justify-between items-center p-4 sm:p-6 text-white ">
       {/* Logo Section */}
       <div className="flex items-center z-10">
         <img
