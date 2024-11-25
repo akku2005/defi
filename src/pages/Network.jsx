@@ -1,153 +1,205 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaShieldAlt,
   FaLock,
   FaExchangeAlt,
   FaChartLine,
+  FaCode,
+  FaNetworkWired,
 } from "react-icons/fa";
 
-// Network Page Component
+const NetworkBackground = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(50)].map((_, index) => (
+        <motion.div
+          key={index}
+          initial={{
+            opacity: 0,
+            scale: 0,
+            x: `${Math.random() * 100}%`,
+            y: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            opacity: [0, 0.2, 0],
+            scale: [0, 1.5, 0],
+            rotate: 360,
+          }}
+          transition={{
+            duration: Math.random() * 5 + 3,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
+          className="absolute rounded-full bg-green-500/20 blur-xl"
+          style={{
+            width: `${Math.random() * 100 + 50}px`,
+            height: `${Math.random() * 100 + 50}px`,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const Network = () => {
+  const [activeSection, setActiveSection] = useState("features");
+
   const networkData = {
     name: "VaultChain Network",
     description:
-      "A secure and scalable decentralized finance network designed to empower users with complete control over their assets.",
-    tagline: "Empowering Your Financial Freedom",
+      "A revolutionary decentralized finance ecosystem designed to transform digital asset management.",
     features: [
       {
         icon: FaShieldAlt,
-        title: "Robust Security",
+        title: "Advanced Security",
         description:
-          "Utilizes advanced cryptographic techniques to ensure the safety of user funds.",
+          "Multi-layer security protocols ensuring comprehensive asset protection.",
       },
       {
         icon: FaLock,
         title: "Decentralized Governance",
         description:
-          "Empowers users to participate in decision-making processes through a transparent voting system.",
+          "Community-driven decision-making with transparent voting mechanisms.",
       },
       {
         icon: FaExchangeAlt,
-        title: "Multi-Asset Support",
+        title: "Cross-Chain Interoperability",
         description:
-          "Supports a wide range of cryptocurrencies and tokens for seamless trading and liquidity.",
+          "Seamless asset transfer across multiple blockchain networks.",
       },
       {
         icon: FaChartLine,
-        title: "Real-Time Analytics",
-        description:
-          "Provides users with real-time data and insights to make informed investment decisions.",
+        title: "Intelligent Analytics",
+        description: "AI-powered insights for strategic investment decisions.",
       },
     ],
-    supportedAssets: [
-      "Bitcoin (BTC)",
-      "Ethereum (ETH)",
-      "Tether (USDT)",
-      "Binance Coin (BNB)",
-      "Cardano (ADA)",
-      "Solana (SOL)",
+    technologies: [
+      {
+        icon: FaCode,
+        title: "Smart Contract Infrastructure",
+        description: "Robust and secure smart contract architecture.",
+      },
+      {
+        icon: FaNetworkWired,
+        title: "Distributed Network",
+        description: "Highly scalable and resilient blockchain infrastructure.",
+      },
     ],
     roadmap: [
-      {
-        phase: "Q1 2023",
-        milestone: "Launch of VaultChain Testnet",
-      },
-      {
-        phase: "Q2 2023",
-        milestone: "Integration of Multi-Asset Support",
-      },
-      {
-        phase: "Q3 2023",
-        milestone: "Launch of VaultChain Mainnet",
-      },
-      {
-        phase: "Q4 2023",
-        milestone: "Introduction of Governance Features",
-      },
+      { phase: "Q1 2024", milestone: "Network Concept & Initial Design" },
+      { phase: "Q2 2024", milestone: "Testnet Development" },
+      { phase: "Q3 2024", milestone: "Initial Protocol Launch" },
+      { phase: "Q4 2024", milestone: "Full Mainnet Deployment" },
     ],
   };
 
+  const renderSection = () => {
+    switch (activeSection) {
+      case "features":
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {networkData.features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-green-500/30 hover:border-green-300 transition-all"
+              >
+                <div className="flex items-center mb-4">
+                  <feature.icon className="text-green-400 text-3xl mr-4" />
+                  <h3 className="text-xl font-semibold text-green-300">
+                    {feature.title}
+                  </h3>
+                </div>
+                <p className="text-gray-300">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        );
+      case "technologies":
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {networkData.technologies.map((tech, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white/10 backdrop-bl ur-lg rounded-2xl p-6 border border-green-500/30 hover:border-green-300 transition-all"
+              >
+                <div className="flex items-center mb-4">
+                  <tech.icon className="text-green-400 text-3xl mr-4" />
+                  <h3 className="text-xl font-semibold text-green-300">
+                    {tech.title}
+                  </h3>
+                </div>
+                <p className="text-gray-300">{tech.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        );
+      case "roadmap":
+        return (
+          <div className="space-y-4">
+            {networkData.roadmap.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.2 }}
+                className="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-green-500/30 flex justify-between items-center"
+              >
+                <div>
+                  <h3 className="text-green-300 font-semibold">{item.phase}</h3>
+                  <p className="text-gray-300">{item.milestone}</p>
+                </div>
+                <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+              </motion.div>
+            ))}
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-gray-900 to-black text-white overflow-hidden">
+    <div className="relative min-h-screen bg-black text-white overflow-hidden">
+      <NetworkBackground />
+
       <div className="container mx-auto py-16 px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
           <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-green-500 to-green-400">
             {networkData.name}
           </h1>
-          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto mt-4">
             {networkData.description}
-          </p>
-          <p className="text-lg text-gray-400 italic mt-2">
-            {networkData.tagline}
           </p>
         </motion.div>
 
-        {/* Features Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {networkData.features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-lg shadow-lg hover:shadow-green-500/50 transition-shadow transform hover:scale-105"
+        <div className="flex justify-center mb-8 space-x-4">
+          {["features", "technologies", "roadmap"].map((section) => (
+            <button
+              key={section}
+              onClick={() => setActiveSection(section)}
+              className={`px-4 py-2 rounded-full transition-all ${
+                activeSection === section
+                  ? "bg-green-500 text-white"
+                  : "bg-white/10 text-gray-300 hover:bg-white/20"
+              }`}
             >
-              <div className="flex items-center mb-4">
-                <feature.icon className="text-green-400 text-4xl mr-2" />
-                <h3 className="text-xl font-bold text-green-300">
-                  {feature.title}
-                </h3>
-              </div>
-              <p className="text-gray-300">{feature.description}</p>
-            </motion.div>
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </button>
           ))}
         </div>
 
-        {/* Supported Assets Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-green-400 mb-4 text-center">
-            Supported Assets
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {networkData.supportedAssets.map((asset, index) => (
-              <div
-                key={index}
-                className="bg-white/10 backdrop-blur-lg border border-white/20 p-4 rounded-lg shadow-lg"
-              >
-                <p className="text-gray-300 text-center">{asset}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Roadmap Section */}
-        <div>
-          <h2 className="text-3xl font-bold text-green-400 mb-4 text-center">
-            Roadmap
-          </h2>
-          <div className="space-y-4">
-            {networkData.roadmap.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="bg-white/10 backdrop-blur-lg border border-white/20 p-4 rounded-lg shadow-lg"
-              >
-                <h3 className="text-lg font-bold text-green-300">
-                  {item.phase}
-                </h3>
-                <p className="text-gray-300">{item.milestone}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        <AnimatePresence mode="wait">{renderSection()}</AnimatePresence>
       </div>
     </div>
   );

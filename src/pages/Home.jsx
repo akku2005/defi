@@ -41,8 +41,6 @@ const Home = () => {
     <motion.div
       className="text-white min-h-screen flex flex-col relative overflow-hidden mt-0"
       variants={containerVariants}
-      initial="hidden"
-      animate="visible"
     >
       {/* Hero Section */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 mb-10">

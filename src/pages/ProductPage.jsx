@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { FaWallet, FaLock, FaChartLine } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaWallet,
+  FaLock,
+  FaChartLine,
+  FaRocket,
+  FaShieldAlt,
+  FaCode,
+} from "react-icons/fa";
 
-// Interactive Particle Background
+// Particle Background Component
 const ParticleBackground = () => {
   const canvasRef = useRef(null);
 
@@ -13,7 +20,7 @@ const ParticleBackground = () => {
     canvas.height = window.innerHeight;
 
     const particles = [];
-    const particleCount = 100;
+    const particleCount = 200;
 
     class Particle {
       constructor() {
@@ -26,7 +33,7 @@ const ParticleBackground = () => {
         this.radius = Math.random() * 3 + 1;
         this.speedX = (Math.random() - 0.5) * 2;
         this.speedY = (Math.random() - 0.5) * 2;
-        this.color = `hsla(${Math.random() * 360}, 70%, 60%, 0.5)`;
+        this.color = `hsla(${Math.random() * 360}, 70%, 60%, 0.6)`;
       }
 
       update() {
@@ -83,7 +90,7 @@ const ParticleBackground = () => {
   );
 };
 
-// VaultChain Product Page
+// Product Page Component
 const ProductPage = () => {
   const [activeSection, setActiveSection] = useState("features");
 
@@ -91,59 +98,63 @@ const ProductPage = () => {
     name: "VaultChain",
     tagline: "Revolutionizing Decentralized Finance Management",
     description:
-      "VaultChain is your trusted companion in the world of decentralized finance. Offering innovative portfolio management, AI-driven investment strategies, and cross-chain interoperability, VaultChain empowers individuals and institutions to stay ahead in the DeFi space.",
+      "VaultChain is your trusted companion in the world of decentralized finance. Offering innovative portfolio management, AI-driven investment strategies, and cross-chain interoperability.",
 
     keyFeatures: [
       {
         icon: FaWallet,
         title: "Comprehensive Portfolio Management",
         description:
-          "Track, analyze, and optimize your DeFi investments in one unified dashboard.",
+          "Unified dashboard to track, analyze, and optimize DeFi investments.",
+        color: "text-blue-400",
       },
       {
         icon: FaLock,
         title: "Institution-Grade Security",
         description:
-          "Advanced multi-chain security protocols to protect your assets and data.",
+          "Advanced multi-chain security protocols protecting your assets.",
+        color: "text-green-400",
       },
       {
         icon: FaChartLine,
-        title: "AI-Driven Investment Insights",
+        title: "AI-Driven Insights",
         description:
-          "Leverage machine learning models to make informed, data-backed investment decisions.",
+          "Machine learning models for data-backed investment decisions.",
+        color: "text-purple-400",
+      },
+      {
+        icon: FaRocket,
+        title: "Cross-Chain Compatibility",
+        description:
+          "Seamless transactions across multiple blockchain networks.",
+        color: "text-red-400",
+      },
+      {
+        icon: FaShieldAlt,
+        title: "Compliance Tools",
+        description: "Built-in regulatory compliance and risk management.",
+        color: "text-yellow-400",
+      },
+      {
+        icon: FaCode,
+        title: "Open-Source Infrastructure",
+        description: "Transparent, community-driven development approach.",
+        color: "text-indigo-400",
       },
     ],
 
     technicalSpecs: {
       transactionSpeed: "Up to 150,000 TPS",
-      multiChainSupport: "Supports Ethereum, Binance Smart Chain, and more",
-      energyEfficiency: "Carbon-neutral infrastructure",
-      compliance: "Integrated regulatory compliance tools",
+      multiChainSupport: "Ethereum, Binance Smart Chain, Polygon",
+      securityProtocols: "Multi-signature, Hardware Wallet Integration",
+      aiModelAccuracy: "95% Predictive Investment Accuracy",
     },
 
     roadmap: [
-      {
-        phase: "Conceptualization",
-        year: 2023,
-        milestone: "Ideation and market research for VaultChain",
-      },
-      {
-        phase: "Prototype Development",
-        year: 2024,
-        milestone:
-          "Launch of beta version with multi-chain support and basic portfolio tracking",
-      },
-      {
-        phase: "Public Release",
-        year: 2025,
-        milestone:
-          "Full-scale launch with AI-driven features and institutional tools",
-      },
-      {
-        phase: "Global Expansion",
-        year: 2026,
-        milestone: "Onboard millions of users and enhance scalability",
-      },
+      { phase: "Conceptualization", year: 2023, status: "Completed" },
+      { phase: "Prototype Development", year: 2024, status: "In Progress" },
+      { phase: "Public Beta", year: 2025, status: "Upcoming" },
+      { phase: "Global Expansion", year: 2026, status: "Planned" },
     ],
   };
 
@@ -154,21 +165,21 @@ const ProductPage = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
             {productData.keyFeatures.map((feature, index) => (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
-                className="bg-gray-800/40 backdrop-blur-md p-6 rounded-lg border border-white/20 shadow-lg hover:shadow-green-500/20 transition-shadow"
+                className="bg-gray-800/60 p-6 rounded-xl border border-white/10 hover:border-green-500/30 transition-all"
               >
-                <div className="flex items-center space-x-4">
-                  <feature.icon className="text-green-400 text-3xl" />
-                  <h3 className="text-xl font-bold text-green-300">
+                <div className="flex items-center mb-4">
+                  <feature.icon className={`${feature.color} text-4xl mr-4`} />
+                  <h3 className="text-xl font-bold text-white">
                     {feature.title}
                   </h3>
                 </div>
-                <p className="text-gray-300 mt-2">{feature.description}</p>
+                <p className="text-gray-300">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -179,14 +190,17 @@ const ProductPage = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="bg-gray-800 p-8 rounded-lg shadow-md grid gap-6"
+            className="grid md:grid-cols-2 gap-6"
           >
             {Object.entries(productData.technicalSpecs).map(([key, value]) => (
-              <div key={key} className="border-b border-green-500/30 pb-4">
-                <h4 className="text-green-300 font-semibold capitalize">
+              <div
+                key={key}
+                className="bg-gray-800/60 p-6 rounded-xl border border-green-500/20"
+              >
+                <h4 className="text-green-400 font-semibold mb-2 uppercase">
                   {key.replace(/([A-Z])/g, " $1")}
                 </h4>
-                <p className="text-gray-200">{value}</p>
+                <p className="text-white">{value}</p>
               </div>
             ))}
           </motion.div>
@@ -200,19 +214,18 @@ const ProductPage = () => {
             className="space-y-6"
           >
             {productData.roadmap.map((stage, index) => (
-              <motion.div
+              <div
                 key={index}
-                whileHover={{ scale: 1.02 }}
-                className="bg-gray-800 p-6 rounded-lg border border-green-500/30 shadow-md flex justify-between items-center"
+                className="bg-gray-800/60 p-6 rounded-xl border border-white/10 flex justify-between items-center"
               >
                 <div>
-                  <h3 className="text-xl font-bold text-green-300">
+                  <h3 className="text-xl font-bold text-green-400">
                     {stage.phase}
                   </h3>
-                  <p className="text-gray-300">{stage.milestone}</p>
+                  <span className="text-gray-300">{stage.milestone}</span>
                 </div>
                 <span className="text-white font-semibold">{stage.year}</span>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         );
@@ -228,10 +241,10 @@ const ProductPage = () => {
 
       <div className="container mx-auto relative z-10 py-16 px-4">
         <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
+          <h1 className="text-5xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600">
             {productData.name}
           </h1>
-          <h2 className="text-lg sm:text-2xl text-green-300 mt-2">
+          <h2 className="text-xl sm:text-3xl text-green-300 mt-2">
             {productData.tagline}
           </h2>
           <p className="text-gray-300 mt-4">{productData.description}</p>
@@ -244,9 +257,9 @@ const ProductPage = () => {
               key={section}
               onClick={() => setActiveSection(section)}
               whileHover={{ scale: 1.1 }}
-              className={`px-4 py-2 rounded-lg transition ${
+              className={`px-6 py-3 rounded-lg transition ${
                 activeSection === section
-                  ? "bg-green-600 text-white"
+                  ? "bg-green-600 text-white shadow-lg"
                   : "bg-gray-800 text-gray-300"
               }`}
             >

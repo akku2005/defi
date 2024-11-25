@@ -2,42 +2,42 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
 
-// Particle Background Component
+// Enhanced Particle Background Component
 const ParticleBackground = () => {
   const particleCount = 100;
   const particles = Array.from({ length: particleCount }).map(() => ({
     x: Math.random() * 100,
     y: Math.random() * 100,
-    size: Math.random() * 5 + 1,
-    delay: Math.random() * 2,
+    size: Math.random() * 200 + 5,
+    delay: Math.random() * 1,
+    color: `hsla(${Math.random() * 360}, 70%, 60%, 0.3)`, // Added color variation
   }));
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((particle, index) => (
+      {[...Array(50)].map((_, index) => (
         <motion.div
           key={index}
           initial={{
             opacity: 0,
             scale: 0,
-            x: `${particle.x}%`,
-            y: `${particle.y}%`,
+            x: `${Math.random() * 100}%`,
+            y: `${Math.random() * 100}%`,
           }}
           animate={{
-            opacity: [0, 0.5, 0],
-            scale: [0, 1, 0],
+            opacity: [0, 0.2, 0],
+            scale: [0, 1.5, 0],
             rotate: 360,
           }}
           transition={{
-            duration: 5,
+            duration: Math.random() * 5 + 3,
             repeat: Infinity,
-            delay: particle.delay,
-            repeatType: "loop",
+            delay: Math.random() * 2,
           }}
-          className="absolute bg-green-500/30 rounded-full"
+          className="absolute rounded-full bg-green-500/20 blur-xl"
           style={{
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
+            width: `${Math.random() * 100 + 50}px`,
+            height: `${Math.random() * 100 + 50}px`,
           }}
         />
       ))}
@@ -53,7 +53,7 @@ const TeamMemberCard = ({ member, index }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 100 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
         duration: 0.6,
@@ -129,7 +129,8 @@ const MeetTheTeam = () => {
     {
       name: "Akashkumar Sahu",
       role: "Founder & CEO",
-      image: "https://via.placeholder.com/150",
+      image:
+        "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       description:
         "Visionary leader with expertise in DeFi, blockchain, and scalable systems.",
       socials: {
@@ -141,7 +142,8 @@ const MeetTheTeam = () => {
     {
       name: "Captain",
       role: "CTO",
-      image: "https://via.placeholder.com/150",
+      image:
+        "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       description:
         "Expert in blockchain architecture, AI, and decentralized infrastructure.",
       socials: {
@@ -153,7 +155,8 @@ const MeetTheTeam = () => {
     {
       name: "Github",
       role: "Lead Developer",
-      image: "https://via.placeholder.com/150",
+      image:
+        "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       description:
         "Specialist in multi-chain interoperability and smart contract development.",
       socials: {
@@ -175,10 +178,7 @@ const MeetTheTeam = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1
-            className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br 
-          from-green-600 via-green-500 to-green-400 "
-          >
+          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-600 via-green-500 to-green-400">
             Meet the Team
           </h1>
           <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
@@ -187,7 +187,7 @@ const MeetTheTeam = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {teamData.map((member, index) => (
             <TeamMemberCard key={index} member={member} index={index} />
           ))}
