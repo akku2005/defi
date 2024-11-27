@@ -137,7 +137,7 @@ const Home = () => {
               transition={{
                 duration: 0.5,
                 y: {
-                  duration: 2, // Slower vertical movement
+                  duration: 14, // Slower vertical movement
                   repeat: Infinity, // Continuous animation
                   repeatType: "reverse", // Bounce back and forth
                   ease: "easeInOut", // Smooth transition
