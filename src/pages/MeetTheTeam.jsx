@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
+import Avatar from "../assets/images/FaceImage.png";
 
 // Enhanced Particle Background Component
 const ParticleBackground = () => {
@@ -129,8 +130,7 @@ const MeetTheTeam = () => {
     {
       name: "Akashkumar Sahu",
       role: "Founder & CEO",
-      image:
-        "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: Avatar,
       description:
         "Visionary leader with expertise in DeFi, blockchain, and scalable systems.",
       socials: {
@@ -142,8 +142,7 @@ const MeetTheTeam = () => {
     {
       name: "Captain",
       role: "CTO",
-      image:
-        "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: Avatar,
       description:
         "Expert in blockchain architecture, AI, and decentralized infrastructure.",
       socials: {
@@ -155,8 +154,7 @@ const MeetTheTeam = () => {
     {
       name: "Github",
       role: "Lead Developer",
-      image:
-        "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      image: Avatar,
       description:
         "Specialist in multi-chain interoperability and smart contract development.",
       socials: {

@@ -1,226 +1,196 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import {
-  FaUsers,
-  FaLightbulb,
-  FaGraduationCap,
-  FaMedal,
-  FaLinkedin,
-  FaTwitter,
-  FaGithub,
-} from "react-icons/fa";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
+import Avatar from "../../assets/images/FaceImage.png";
 
-const TeamMembers = [
-  {
-    name: "Alex Rodriguez",
-    role: "Founder & CEO",
-    bio: "Blockchain visionary with 10+ years in tech entrepreneurship",
-    image: "/path/to/alex-profile.jpg",
-    socials: {
-      linkedin: "#",
-      twitter: "#",
-      github: "#",
-    },
-  },
-  {
-    name: "Sarah Chen",
-    role: "Chief Technology Officer",
-    bio: "Distributed systems expert with deep blockchain architecture experience",
-    image: "/path/to/sarah-profile.jpg",
-    socials: {
-      linkedin: "#",
-      twitter: "#",
-      github: "#",
-    },
-  },
-  {
-    name: "Michael Wong",
-    role: "Head of Product",
-    bio: "Product strategist specializing in blockchain user experience",
-    image: "/path/to/michael-profile.jpg",
-    socials: {
-      linkedin: "#",
-      twitter: "#",
-      github: "#",
-    },
-  },
-];
-
-const CompanyValues = [
-  {
-    icon: FaLightbulb,
-    title: "Innovation",
-    description:
-      "Pushing boundaries of blockchain technology and decentralized solutions.",
-    color: "text-green-400",
-  },
-  {
-    icon: FaUsers,
-    title: "Collaboration",
-    description:
-      "Building an inclusive ecosystem of developers and innovators.",
-    color: "text-green-500",
-  },
-  {
-    icon: FaGraduationCap,
-    title: "Continuous Learning",
-    description:
-      "Commitment to ongoing education and technological advancement.",
-    color: "text-green-600",
-  },
-  {
-    icon: FaMedal,
-    title: "Integrity",
-    description:
-      "Maintaining the highest standards of transparency and ethical practice.",
-    color: "text-green-700",
-  },
-];
-
-const CompanyTeam = () => {
-  const [activeTab, setActiveTab] = useState("team");
+// Enhanced Particle Background Component
+const ParticleBackground = () => {
+  const particleCount = 100;
+  const particles = Array.from({ length: particleCount }).map(() => ({
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 200 + 5,
+    delay: Math.random() * 1,
+    color: `hsla(${Math.random() * 360}, 70%, 60%, 0.3)`, // Added color variation
+  }));
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 pt-24 text-center">
-        <motion.h1
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(50)].map((_, index) => (
+        <motion.div
+          key={index}
+          initial={{
+            opacity: 0,
+            scale: 0,
+            x: `${Math.random() * 100}%`,
+            y: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            opacity: [0, 0.2, 0],
+            scale: [0, 1.5, 0],
+            rotate: 360,
+          }}
+          transition={{
+            duration: Math.random() * 5 + 3,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
+          className="absolute rounded-full bg-green-500/20 blur-xl"
+          style={{
+            width: `${Math.random() * 100 + 50}px`,
+            height: `${Math.random() * 100 + 50}px`,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+// Team Member Card Component
+const TeamMemberCard = ({ member, index }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 100 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.2,
+        type: "spring",
+        stiffness: 100,
+      }}
+      className="glass-card p-6 rounded-2xl bg-black/60 backdrop-blur-sm border border-green-600/30 relative overflow-hidden group transition-colors"
+    >
+      {/* Background color change on hover */}
+      <motion.div className="absolute inset-0 -z-10 bg-gradient-to-r from-green-300/20 to-green-700/10 opacity-100 group-hover:from-green-500/10 group-hover:to-green-900/20 transition-all duration-300"></motion.div>
+
+      <div className="relative z-10">
+        <motion.img
+          src={member.image}
+          alt={member.name}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-green-500 object-cover"
+        />
+        <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-green-500 to-green-400 text-center">
+          {member.name}
+        </h3>
+        <p className="text-sm text-green-300 text-center mb-4">{member.role}</p>
+        <p className="text-gray-300 text-center mb-6 min-h-[72px]">
+          {member.description}
+        </p>
+        <motion.div
+          className="flex justify-center space-x-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          {[
+            {
+              Icon: FaLinkedin,
+              color: "text-green-500",
+              href: member.socials.linkedin,
+            },
+            {
+              Icon: FaTwitter,
+              color: "text-green-500",
+              href: member.socials.twitter,
+            },
+            {
+              Icon: FaGithub,
+              color: "text-green-500",
+              href: member.socials.github,
+            },
+          ].map(({ Icon, color, href }, idx) => (
+            <motion.a
+              key={idx}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, rotate: 360 }}
+              whileTap={{ scale: 0.9 }}
+              className={`${color} text-3xl transition-transform`}
+            >
+              <Icon />
+            </motion.a>
+          ))}
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Meet the Team Page
+const CompanyTeam = () => {
+  const teamData = [
+    {
+      name: "Akashkumar Sahu",
+      role: "Founder & CEO",
+      image: Avatar,
+      description:
+        "Visionary leader with expertise in DeFi, blockchain, and scalable systems.",
+      socials: {
+        linkedin: "#",
+        twitter: "#",
+        github: "#",
+      },
+    },
+    {
+      name: "Captain",
+      role: "CTO",
+      image: Avatar,
+      description:
+        "Expert in blockchain architecture, AI, and decentralized infrastructure.",
+      socials: {
+        linkedin: "#",
+        twitter: "#",
+        github: "#",
+      },
+    },
+    {
+      name: "Github",
+      role: "Lead Developer",
+      image: Avatar,
+      description:
+        "Specialist in multi-chain interoperability and smart contract development.",
+      socials: {
+        linkedin: "#",
+        twitter: "#",
+        github: "#",
+      },
+    },
+  ];
+
+  return (
+    <div className="relative min-h-screen bg-black text-white overflow-hidden">
+      <ParticleBackground />
+
+      <div className="container mx-auto py-16 px-4 relative z-10">
+        <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-600 via-green-500 to-green-400 bg-clip-text text-transparent"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          VaultChain Team
-        </motion.h1>
-        <p className="text-xl max-w-2xl mx-auto text-gray-300 mb-12">
-          A passionate team of blockchain experts dedicated to revolutionizing
-          decentralized technology and driving innovation forward.
-        </p>
-      </div>
+          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-600 via-green-500 to-green-400">
+            Meet the Team
+          </h1>
+          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
+            The brilliant minds driving innovation in decentralized
+            technologies, committed to transforming the blockchain landscape.
+          </p>
+        </motion.div>
 
-      {/* Tabs Navigation */}
-      <div className="flex justify-center mb-12">
-        <div className="bg-gray-900 rounded-full p-2 flex space-x-4">
-          {["team", "values", "careers"].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-2 rounded-full transition-all duration-300 ${
-                activeTab === tab
-                  ? "bg-gradient-to-r from-green-600 via-green-500 to-green-400 text-white"
-                  : "text-gray-400 hover:bg-gray-800"
-              }`}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </button>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {teamData.map((member, index) => (
+            <TeamMemberCard key={index} member={member} index={index} />
           ))}
         </div>
       </div>
-
-      {/* Team Members Section */}
-      {activeTab === "team" && (
-        <div className="container mx-auto px-4 grid md:grid-cols-3 gap-6">
-          {TeamMembers.map((member, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.2 }}
-              className="bg-gray-900 bg-opacity-50 backdrop-blur-lg p-6 rounded-xl text-center hover:bg-gray-800 transition-all border border-green-800 hover:border-green-600"
-            >
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-green-500"
-              />
-              <h3 className="text-xl font-bold mb-2 text-green-400">
-                {member.name}
-              </h3>
-              <p className="text-gray-300 mb-4">{member.role}</p>
-              <p className="text-gray-400 mb-4">{member.bio}</p>
-              <div className="flex justify-center space-x-4">
-                <a
-                  href={member.socials.linkedin}
-                  className="text-2xl text-gray-400 hover:text-green-500"
-                >
-                  <FaLinkedin />
-                </a>
-                <a
-                  href={member.socials.twitter}
-                  className="text-2xl text-gray-400 hover:text-green-400"
-                >
-                  <FaTwitter />
-                </a>
-                <a
-                  href={member.socials.github}
-                  className="text-2xl text-gray-400 hover:text-green-600"
-                >
-                  <FaGithub />
-                </a>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      )}
-
-      {/* Company Values Section */}
-      {activeTab === "values" && (
-        <div className="container mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {CompanyValues.map((value, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.2 }}
-              className="bg-gray-900 bg-opacity-50 backdrop-blur-lg p-6 rounded-xl text-center hover:bg-gray-800 transition-all border border-green-800 hover:border-green-600"
-            >
-              <value.icon className={`mx-auto text-5xl mb-4 ${value.color}`} />
-              <h3 className="text-xl font-bold mb-3 text-green-400">
-                {value.title}
-              </h3>
-              <p className="text-gray-400">{value.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      )}
-
-      {/* Careers Section */}
-      {activeTab === "careers" && (
-        <div className="container mx-auto px-4 max-w-xl">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-gray-900 bg-opacity-50 backdrop-blur-lg p-8 rounded-xl border border-green-800"
-          >
-            <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-green-600 via-green-500 to-green-400 bg-clip-text text-transparent">
-              Join Our Team
-            </h2>
-            <p className="text-gray-300  mb-4 text-center">
-              We are always looking for talented individuals who are passionate
-              about blockchain technology and innovation. If you are interested
-              in joining our team, please fill out the application form below.
-            </p>
-            <form className="space-y-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full p-3 bg-black border border-green-800 rounded-lg focus:outline-none focus:border-green-600"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full p-3 bg-black border border-green-800 rounded-lg focus:outline-none focus:border-green-600"
-              />
-              <textarea
-                placeholder="Your Message"
-                className="w-full p-3 bg-black border border-green-800 rounded-lg h-32 focus:outline-none focus:border-green-600"
-              />
-              <button className="w-full bg-gradient-to-r from-green-600 via-green-500 to-green-400 py-3 rounded-lg hover:bg-gradient-to-l transition-colors">
-                Submit Application
-              </button>
-            </form>
-          </motion.div>
-        </div>
-      )}
     </div>
   );
 };

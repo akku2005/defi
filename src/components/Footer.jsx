@@ -14,33 +14,22 @@ import FooterImage2 from "../assets/images/footerImage.png";
 // Configuration Objects
 const SOCIAL_LINKS = [
   {
-    icon: faTelegram,
-    label: "Telegram",
-    path: "https://t.me/vaultchain",
-    external: true,
-  },
-  {
     icon: faXing,
     label: "Xing",
-    path: "https://www.xing.com/vaultchain",
+    path: "https://x.com/AkashSa07314397",
     external: true,
   },
-  {
-    icon: faYoutube,
-    label: "YouTube",
-    path: "https://www.youtube.com/@vaultchain",
-    external: true,
-  },
+
   {
     icon: faLinkedin,
     label: "LinkedIn",
-    path: "https://www.linkedin.com/company/vaultchain",
+    path: "http://www.linkedin.com/in/akashkumar-sahu-5b7897238",
     external: true,
   },
   {
     icon: faGithub,
     label: "GitHub",
-    path: "https://github.com/vaultchain",
+    path: "https://github.com/akku2005",
     external: true,
   },
 ];
@@ -181,9 +170,11 @@ const Footer = () => {
                   VaultChain
                 </span>
               </div>
-              <p className="text-base sm:text-lg text-gray-300 text-center sm:text-left mb-4">
-                Killer Whales Contest
-              </p>
+              <Link to="https://github.com/akku2005" target="_blank">
+                <p className="text-base sm:text-lg text-gray-300 text-center sm:text-left mb-4">
+                  Killer Whales Contest
+                </p>
+              </Link>
 
               {/* Social Links */}
               <nav className="flex space-x-6 justify-center sm:justify-start">
